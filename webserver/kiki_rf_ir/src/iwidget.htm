@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+	    
+		<meta charset="UTF-8" />
+		<title>Interface</title>
+       
+       
+       
+		<script src="funcs.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css" media="screen">@import "UI.css";</style>
+		<script type="text/javascript" charset="utf-8">
+		
+		var r=0,g=0,b=0,h=0,s=0,l=0;
+		
+		 
+		function setVars(elem){
+			//Convert HSL Values
+			if ((elem=="hedit")||(elem=="sedit")||(elem=="ledit")) {
+				answer=hslToRgb((parseInt(document.getElementById("hedit").innerHTML)/16),
+								(parseInt(document.getElementById("sedit").innerHTML)/15), 
+								(parseInt(document.getElementById("ledit").innerHTML)/15));
+				r=answer[0];g=answer[1];b=answer[2];
+			}
+			else 	{
+				//Global variables to values of UI-Elements
+				r=parseInt(document.getElementById("redit").innerHTML)*17;
+				g=parseInt(document.getElementById("gedit").innerHTML)*17;
+				b=parseInt(document.getElementById("bedit").innerHTML)*17;
+				answer=rgbToHsl(r, g, b);
+				h=answer[0];s=answer[1];l=answer[2];
+			}
+			
+			
+			//Color ToggleHSL-Button in selected color
+			//alert("R="+r+", G="+g+", B="+b);
+			document.getElementById("tHSL0").style.background='rgb(' + Math.round(r) + ',' + Math.round(g) + ',' + Math.round(b) + ')';
+			document.getElementById("tHSL1").style.background='rgb(' + Math.round(r) + ',' + Math.round(g) + ',' + Math.round(b) + ')';
+			document.getElementById("tHSL2").style.background='rgb(' + Math.round(r) + ',' + Math.round(g) + ',' + Math.round(b) + ')';
+		}
+
+		
+		function toggleHSL(){
+			if (document.getElementById("ir_section").style.display == "none")
+			{				
+				// RGB -> HSL
+				//toggle visibility
+				document.getElementById("ir_section").style.display = "inline";
+				document.getElementById("rf_section").style.display = "none";
+			}
+			else
+			{	
+				// HSL -> RGB
+				//toggle visibility
+				document.getElementById("ir_section").style.display="none";
+				document.getElementById("rf_section").style.display = "inline";
+			}
+		}
+		
+		function incr(elem)
+		{
+			if (parseInt(document.getElementById(elem).innerHTML)<15)
+			document.getElementById(elem).innerHTML=parseInt(document.getElementById(elem).innerHTML)+1;
+			setVars(elem);
+			writeRGB(r,g,b);
+		}
+		
+		
+		function decr(elem)
+		{
+			if (parseInt(document.getElementById(elem).innerHTML)>0)
+			document.getElementById(elem).innerHTML=parseInt(document.getElementById(elem).innerHTML)-1;
+			setVars(elem);
+			writeRGB(r,g,b);
+		}
+		
+		function setSocket(elem)
+		{
+			if (document.getElementById())
+			document.location = "http://192.168.0.5/socket.cgi?" + elem + "&";
+			
+		}
+		
+		</script>
+		
+    </head>
+    <body style="filter:alpha (opacity=10);" onload=readRGB()>
+	<div id="widget" style="	-webkit-transform: scale(1);">
+
+<div id="rf_section" style="display:inline;">	
+<!-- RF Section !-->
+
+<div class="edit" style="position:absolute;width:120px;left:30px;top:0px;Background:#888888;" id="socket_1" onclick=setSocket("socket_1")>1</div>
+
+<div class="edit" style="position:absolute;width:120px;left:30px;top:60px;Background:#888888;" id="socket_2" onclick=setSocket("socket_2")>2</div>
+
+
+<div class="edit" style="position:absolute;width:120px;left:30px;top:120px;Background:#888888;" id="socket_3" onclick=setSocket("socket_3")>3</div>
+
+</div>
+
+
+<!-- TOGGLE BUTTONS !-->
+
+<div class="button" style="position:absolute;left:180px;top:0px;background:#cccccc;opacity: 0.6;" id="tHSL0" onclick=toggleHSL()>
+</div>
+<div class="button" style="position:absolute;left:180px;top:60px;background:#cccccc;opacity: 0.6;" id="tHSL1" onclick=toggleHSL()>
+</div>
+<div class="button" style="position:absolute;left:180px;top:120px;background:#cccccc;opacity: 0.6;" id="tHSL2" onclick=toggleHSL()>
+</div>
+
+
+<div id="ir_section" style="display:none;">
+<!-- IR Section !-->
+
+<div class="edit" style="position:absolute;width:120px;left:30px;top:0px;Background:#338811;" id="socket_1" onclick=setFull("redit")>+</div>
+
+<div class="edit" style="position:absolute;width:120px;left:30px;top:60px;Background:#888888;" id="socket_2" onclick=setFull("redit")>ø</div>
+
+
+<div class="edit" style="position:absolute;width:120px;left:30px;top:120px;Background:#888888;" id="socket_3" onclick=setFull("redit")>-</div>
+
+</div>
+</div>
+    </body>
+</html>
