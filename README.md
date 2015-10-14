@@ -4,9 +4,10 @@ Connect an openWRT powererd router to a NRF 2.4 GHz mesh network with this adapt
 Included are files for the printed circuit board (PCB) and software for forwarding messages and sending specific commands.
 Additionally a 433 MHz RF-sender and 38 kHz IR-leds can be connected to enable the device to control TV- and stereo-sets and RF controlled outlets.
 
-![NRF Node PCB](https://raw.githubusercontent.com/ameeuw/NRF_OpenWRT_Bridge/master/hardware/board.png =200x)
+<img src="https://raw.githubusercontent.com/ameeuw/NRF_OpenWRT_Bridge/master/hardware/board.png" alt="NRF Node PCB" width=200></img>
 
-![PCB holding frame](https://github.com/ameeuw/NRF_OpenWRT_Bridge/blob/master/hardware/pcb_frame.png =200x)
+<img src="https://github.com/ameeuw/NRF_OpenWRT_Bridge/blob/master/hardware/pcb_frame.png" alt="PCB holding frame" width=200></img>
+
 ----------------------------------------
 
 Node broadcasts if button is pressed at boottime:
